@@ -11,7 +11,7 @@ plugins {
 
 android {
   namespace = "com.example"
-  compileSdk = 36 // इसे सिंपल फॉर्मेट में बदल दिया है
+  compileSdk = 36
 
   defaultConfig {
     applicationId = "com.aistudio.ovs.kxmpzq"
@@ -21,6 +21,11 @@ android {
     versionName = "1.0"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  // KSP के लिए हेडलेस मोड इनेबल किया गया है ताकि बिल्ड एरर न आए
+  ksp {
+    arg("ksp.dontIncludeDesktopSupport", "true")
   }
 
   signingConfigs {
@@ -41,7 +46,7 @@ android {
       signingConfig = signingConfigs.getByName("release")
     }
     debug {
-      // GitHub Actions के लिए यहाँ signingConfig हटा दिया गया है
+      // GitHub Actions में की-स्टोर एरर से बचने के लिए इसे खाली छोड़ दिया है
     }
   }
   
