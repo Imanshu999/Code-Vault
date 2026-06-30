@@ -15,8 +15,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Make gradlew executable
-        run: chmod +x gradlew
+      # यह स्टेप gradlew फाइल को खुद जनरेट करेगा
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper
 
       - name: Build Code-Vault APK
         run: ./gradlew assembleDebug
