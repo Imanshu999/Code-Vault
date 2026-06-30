@@ -15,11 +15,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # यह स्टेप gradlew फाइल नहीं होने पर उसे खुद से जनरेट कर देगा
-      - name: Generate Gradle Wrapper
-        run: gradle wrapper
-
-      - name: Grant execute permission for gradlew
+      - name: Make gradlew executable
         run: chmod +x gradlew
 
       - name: Build Code-Vault APK
