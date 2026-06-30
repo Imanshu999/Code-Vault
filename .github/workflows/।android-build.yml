@@ -5,8 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    # यह पर्यावरण वेरिएबल जोड़ें
     env:
-      JAVA_OPTS: "-Djava.awt.headless=true" # यह GUI एरर को रोकेगा
+      JAVA_OPTS: "-Djava.awt.headless=true"
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,11 +22,8 @@ jobs:
       - name: Generate Gradle Wrapper
         run: gradle wrapper
 
-      - name: Grant execute permission
-        run: chmod +x gradlew
-
       - name: Build Code-Vault APK
-        run: ./gradlew assembleDebug -x validateSigningDebug
+        run: ./gradlew assembleDebug
 
       - name: Upload Code-Vault APK
         uses: actions/upload-artifact@v4
