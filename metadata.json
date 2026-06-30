@@ -1,0 +1,6 @@
+{
+  "name": "Code Vault",
+  "description": "Code Previewer with Offline Vault and Sync features.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
