@@ -5,6 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      JAVA_OPTS: "-Djava.awt.headless=true" # यह GUI एरर को रोकेगा
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -15,14 +17,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # gradlew जनरेट करना
       - name: Generate Gradle Wrapper
         run: gradle wrapper
 
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      # साइनिंग चेक को स्किप करना (-x validateSigningDebug)
       - name: Build Code-Vault APK
         run: ./gradlew assembleDebug -x validateSigningDebug
 
