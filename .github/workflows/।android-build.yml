@@ -9,18 +9,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: List all files
-        run: ls -R  # यह कमांड पूरी रिपॉजिटरी का स्ट्रक्चर दिखाएगी
-
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # यहाँ gradlew का स्टेप हटा दिया है क्योंकि पहले हम फाइल लोकेशन देखेंगे
+      # यह स्टेप gradlew फाइल नहीं होने पर उसे खुद से जनरेट कर देगा
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
       - name: Build Code-Vault APK
-        run: ./gradlew assembleDebug || ./app/gradlew assembleDebug
+        run: ./gradlew assembleDebug
 
       - name: Upload Code-Vault APK
         uses: actions/upload-artifact@v4
